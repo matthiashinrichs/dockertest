@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Docker Test Application</title>
+</head>
+
+<body>
+
+<h1>Hello, World!</h1>
+<p>Hostname/Container-ID: {{ data.hostname }}</p>
+<p>Client-IP: {{ data.client_ip }}</p>
+
+<h2>OS Environment Variables</h2>
+<table>
+    <tbody>
+    {% for k in data.os_env %}
+        <tr>
+        <td>{{ k }}</td>
+        <td> {{ data.os_env[k] }}</td>
+            </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>Request Environment Variables</h2>
+<table>
+    <tbody>
+    {% for k in data.request_env %}
+        <tr>
+        <td>{{ k }}</td>
+        <td> {{ data.request_env[k] }}</td>
+            </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
