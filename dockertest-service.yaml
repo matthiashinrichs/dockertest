@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: dockertest-service
+spec:
+  selector:
+    app: dockertest
+  ports:
+  - protocol: TCP
+    port: 5000
+  type: NodePort
+
