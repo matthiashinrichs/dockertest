@@ -15,11 +15,11 @@
 <h2>OS Environment Variables</h2>
 <table>
     <tbody>
-    {% for k in data.os_env %}
+    {% for k,v in data.os_env|dictsort %}
         <tr>
-        <td>{{ k }}</td>
-        <td> {{ data.os_env[k] }}</td>
-            </tr>
+            <td>{{ k }}</td>
+            <td> {{ v }}</td>
+        </tr>
 
     {% endfor %}
     </tbody>
@@ -28,11 +28,11 @@
 <h2>Request Environment Variables</h2>
 <table>
     <tbody>
-    {% for k in data.request_env %}
+    {% for k,v in data.request_env|dictsort %}
         <tr>
-        <td>{{ k }}</td>
-        <td> {{ data.request_env[k] }}</td>
-            </tr>
+            <td>{{ k }}</td>
+            <td> {{ v }}</td>
+        </tr>
 
     {% endfor %}
     </tbody>
