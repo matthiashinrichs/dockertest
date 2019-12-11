@@ -17,6 +17,8 @@ spec:
     spec:
       containers:
       - name: dockertest
-        image: docker-build.hnrx.de/matthias/dockertest:latest
+        image: hub.hnrx.de/matthias/dockertest:latest
         ports:
         - containerPort: 5000
+      imagePullSecrets:
+      - name: regcred
