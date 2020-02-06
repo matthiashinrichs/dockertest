@@ -11,12 +11,14 @@ app = Flask(__name__)
 def hello_index():
     os_env = os.environ
     r_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    x_forwarded_ip = request.environ.get('HTTP_X_ORIGINAL_FORWARDED_FOR', '0')
     req_env = request.environ
     hostname = socket.gethostname()
     data = {
         'os_env': os_env,
         'client_ip': r_ip,
         'request_env': req_env,
+        'x_forwarded_ip': x_forwarded_ip,
         'hostname': hostname
     }
     return render_template('index.html', title='Home', data=data)
