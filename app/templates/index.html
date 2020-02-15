@@ -9,9 +9,7 @@
 <body>
 
 <h1>Hello, Container-World!</h1>
-<p>Diese App dient nur zu Demonstrationszwecken und ist sonst für nichts zu gebrauchen.</p>
-
-<p>Jetzt sollten beim Update die Replicasets limitiert sein.</p>
+<p>Diese App dient nur zu Demonstrationszwecken und ist ansonsten für nichts zu gebrauchen.</p>
 
 <p>Hostname/Container-ID: {{ data.hostname }}</p>
 <p>Client-IP: {{ data.client_ip }}</p>
@@ -19,6 +17,8 @@
     <p>Metallb hides the original IP, but we find it in HTTP_X_ORIGINAL_FORWARDED_FOR</p>
     <p>HTTP_X_ORIGINAL_FORWARDED_FOR: {{ data.x_forwarded_ip }}</p>
 {% endif %}
+<h2>Python version</h2>
+<p>{{ data.python_version }}</p>
 
 <h2>OS Environment Variables</h2>
 <table>
