@@ -1,10 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: dockertest-service
+  name: myapp-service
+  namespace: myapp
 spec:
   selector:
-    app: dockertest
+    app: myapp
   ports:
   - protocol: TCP
     port: 5000

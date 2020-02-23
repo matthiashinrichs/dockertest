@@ -1,23 +1,30 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: myapp
+  labels:
+    name: myapp
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dockertest-deployment
+  name: myapp
   labels:
-    app: dockertest
-  namespace: test
+    app: myapp
+  namespace: myapp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: dockertest
+      app: myapp
   template:
     metadata:
       labels:
-        app: dockertest
+        app: myapp
     spec:
       containers:
       - name: dockertest
-        image: hub.hnrx.de/matthias/dockertest:latest
+        image: hub.hnrx.de:32769/matthias/dockertest
         ports:
         - containerPort: 5000
       imagePullSecrets:
