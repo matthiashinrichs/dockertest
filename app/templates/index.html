@@ -13,44 +13,65 @@
 <body>
 <div class="container">
     <div class="jumbotron">
-    <h1>Hello, Container!</h1>
-    <p>Diese App dient nur zu Demonstrationszwecken und ist ansonsten für nichts zu gebrauchen.</p>
+        <h1>Hello, Container!</h1>
+        <p>Diese App dient nur zu Demonstrationszwecken und ist ansonsten für nichts zu gebrauchen.</p>
 
-    <p>Hostname/Container-ID: {{ data.hostname }}</p>
-    <p>Client-IP: {{ data.client_ip }}</p>
-    {% if data.x_forwarded_ip != '0' %}
-        <p>Metallb hides the original IP, but we find it in HTTP_X_ORIGINAL_FORWARDED_FOR</p>
-        <p>HTTP_X_ORIGINAL_FORWARDED_FOR: {{ data.x_forwarded_ip }}</p>
-    {% endif %}
+        <p>Hostname/Container-ID: {{ data.hostname }}</p>
+        <p>Client-IP: {{ data.client_ip }}</p>
+        {% if data.x_forwarded_ip != '0' %}
+            <p>Metallb hides the original IP, but we find it in HTTP_X_ORIGINAL_FORWARDED_FOR</p>
+            <p>HTTP_X_ORIGINAL_FORWARDED_FOR: {{ data.x_forwarded_ip }}</p>
+        {% endif %}
     </div>
-    <h2>Python version</h2>
-    <p>{{ data.python_version }}</p>
 
-    <h2>OS Environment Variables</h2>
-    <table class="table table-sm table-hover">
-        <tbody>
-        {% for k,v in data.os_env|dictsort %}
-            <tr>
-                <td>{{ k }}</td>
-                <td> {{ v }}</td>
-            </tr>
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#python_ver" role="button" aria-expanded="false"
+           aria-controls="collapseExample">
+            Python Version
+        </a>
+        <a class="btn btn-primary" data-toggle="collapse" href="#os_env" role="button" aria-expanded="false"
+           aria-controls="collapseExample">
+            OS Variables
+        </a>
+        <a class="btn btn-primary" data-toggle="collapse" href="#req_env" role="button" aria-expanded="false"
+           aria-controls="collapseExample">
+            Request Variables
+        </a>
+    </p>
+    <div class="collapse" id="python_ver">
+        <h4>Python version</h4>
+        <p>{{ data.python_version }}</p>
+    </div>
+    <div class="collapse" id="os_env">
+        <h4>OS Environment Variables</h4>
 
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-sm table-hover">
+            <tbody>
+            {% for k,v in data.os_env|dictsort %}
+                <tr>
+                    <td>{{ k }}</td>
+                    <td> {{ v }}</td>
+                </tr>
 
-    <h2>Request Environment Variables</h2>
-    <table class="table table-sm table-hover">
-        <tbody>
-        {% for k,v in data.request_env|dictsort %}
-            <tr>
-                <td>{{ k }}</td>
-                <td> {{ v }}</td>
-            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="collapse" id="req_env">
+        <h4>Request Environment Variables</h4>
 
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-sm table-hover">
+            <tbody>
+            {% for k,v in data.request_env|dictsort %}
+                <tr>
+                    <td>{{ k }}</td>
+                    <td> {{ v }}</td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
