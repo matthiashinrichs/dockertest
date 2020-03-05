@@ -1,50 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Docker Test Application and CI/CD Demo</title>
 </head>
 
 <body>
+<div class="container">
+    <div class="jumbotron">
+    <h1>Hello, Container!</h1>
+    <p>Diese App dient nur zu Demonstrationszwecken und ist ansonsten für nichts zu gebrauchen.</p>
 
-<h1>Hello, Container!</h1>
-<p>Diese App dient nur zu Demonstrationszwecken und ist ansonsten für nichts zu gebrauchen.</p>
+    <p>Hostname/Container-ID: {{ data.hostname }}</p>
+    <p>Client-IP: {{ data.client_ip }}</p>
+    {% if data.x_forwarded_ip != '0' %}
+        <p>Metallb hides the original IP, but we find it in HTTP_X_ORIGINAL_FORWARDED_FOR</p>
+        <p>HTTP_X_ORIGINAL_FORWARDED_FOR: {{ data.x_forwarded_ip }}</p>
+    {% endif %}
+    </div>
+    <h2>Python version</h2>
+    <p>{{ data.python_version }}</p>
 
-<p>Hostname/Container-ID: {{ data.hostname }}</p>
-<p>Client-IP: {{ data.client_ip }}</p>
-{% if data.x_forwarded_ip != '0' %}
-    <p>Metallb hides the original IP, but we find it in HTTP_X_ORIGINAL_FORWARDED_FOR</p>
-    <p>HTTP_X_ORIGINAL_FORWARDED_FOR: {{ data.x_forwarded_ip }}</p>
-{% endif %}
-<h2>Python version</h2>
-<p>{{ data.python_version }}</p>
+    <h2>OS Environment Variables</h2>
+    <table class="table table-sm table-hover">
+        <tbody>
+        {% for k,v in data.os_env|dictsort %}
+            <tr>
+                <td>{{ k }}</td>
+                <td> {{ v }}</td>
+            </tr>
 
-<h2>OS Environment Variables</h2>
-<table>
-    <tbody>
-    {% for k,v in data.os_env|dictsort %}
-        <tr>
-            <td>{{ k }}</td>
-            <td> {{ v }}</td>
-        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    {% endfor %}
-    </tbody>
-</table>
+    <h2>Request Environment Variables</h2>
+    <table class="table table-sm table-hover">
+        <tbody>
+        {% for k,v in data.request_env|dictsort %}
+            <tr>
+                <td>{{ k }}</td>
+                <td> {{ v }}</td>
+            </tr>
 
-<h2>Request Environment Variables</h2>
-<table>
-    <tbody>
-    {% for k,v in data.request_env|dictsort %}
-        <tr>
-            <td>{{ k }}</td>
-            <td> {{ v }}</td>
-        </tr>
-
-    {% endfor %}
-    </tbody>
-</table>
-
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>
