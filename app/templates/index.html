@@ -7,40 +7,58 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/all.min.css') }}">
     <title>Docker Test Application and CI/CD Demo</title>
 </head>
 
 <body>
+<nav class="navbar fixed-top navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1"><i class="fab fa-docker"></i> Dummy App</span>
+</nav>
+
 <div class="container">
     <div class="jumbotron">
         <h1>Hello, Container!</h1>
-        <p>Diese App dient nur zu Demonstrationszwecken und ist ansonsten für nichts zu gebrauchen.</p>
-
         <p>Hostname/Container-ID: {{ data.hostname }}</p>
         <p>Client-IP: {{ data.client_ip }}</p>
         {% if data.x_forwarded_ip != '0' %}
-            <p>Metallb hides the original IP, but we find it in HTTP_X_ORIGINAL_FORWARDED_FOR</p>
+            <p><i class="fas fa-exclamation-circle"></i> A load balancer hides the original IP, but we find it in HTTP_X_ORIGINAL_FORWARDED_FOR</p>
             <p>HTTP_X_ORIGINAL_FORWARDED_FOR: {{ data.x_forwarded_ip }}</p>
         {% endif %}
     </div>
 
     <p>
-        <a class="btn btn-primary" data-toggle="collapse" href="#python_ver" role="button" aria-expanded="false"
-           aria-controls="collapseExample">
-            Python Version
+        <a class="btn btn-primary" data-toggle="modal" data-target="#python_ver" href="#" role="button" aria-expanded="false"
+           aria-controls="modalPython">
+            <i class="far fa-window-restore"></i> Python Version
         </a>
         <a class="btn btn-primary" data-toggle="collapse" href="#os_env" role="button" aria-expanded="false"
            aria-controls="collapseExample">
-            OS Variables
+            <i class="far fa-list-alt"></i> OS Variables
         </a>
         <a class="btn btn-primary" data-toggle="collapse" href="#req_env" role="button" aria-expanded="false"
            aria-controls="collapseExample">
-            Request Variables
+            <i class="far fa-list-alt"></i> Request Variables
         </a>
     </p>
-    <div class="collapse" id="python_ver">
-        <h4>Python version</h4>
-        <p>{{ data.python_version }}</p>
+    <div class="modal fade" id="python_ver" tabindex="-1" role="dialog" aria-labelledby="modalPython"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="python_ver">Python version</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ data.python_version }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="collapse" id="os_env">
         <h4>OS Environment Variables</h4>
