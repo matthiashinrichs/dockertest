@@ -16,13 +16,15 @@ def hello_index():
     x_forwarded_ip = request.environ.get('HTTP_X_ORIGINAL_FORWARDED_FOR', '0')
     req_env = request.environ
     hostname = socket.gethostname()
+    css_version = os.path.getmtime("static/css/style.css")
     data = {
         'python_version': python_version,
         'os_env': os_env,
         'client_ip': r_ip,
         'request_env': req_env,
         'x_forwarded_ip': x_forwarded_ip,
-        'hostname': hostname
+        'hostname': hostname,
+        'css_version': css_version
     }
     return render_template('index.html', title='Home', data=data)
 
