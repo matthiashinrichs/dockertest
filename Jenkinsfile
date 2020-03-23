@@ -6,7 +6,7 @@ stages {
 
     stage('Checkout Source') {
       steps {
-        git 'https://bitbucket.org/hinrichsmedien/dockertest.git'
+        git 'https://matthias_hinrichs@bitbucket.org/hinrichsmedien/dockertest.git'
       }
     }
 
