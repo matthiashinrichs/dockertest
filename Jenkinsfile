@@ -2,7 +2,7 @@ pipeline {
 
 
 environment {
-  registry = "hub.hnrx.de/myapp"
+  registry = "hub.hnrx.de:32769/myapp"
   dockerImage = ""
 }
 
