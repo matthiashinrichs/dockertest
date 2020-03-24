@@ -2,8 +2,8 @@ pipeline {
 
 
 environment {
-  registry = "hub.hnrx.de:32769/"
-  dockerImage = "myapp"
+  registry = "hub.hnrx.de/myapp"
+  dockerImage = ""
 }
 
 agent any
@@ -21,7 +21,7 @@ stages {
 stage('Build image') {
 steps{
 script {
-dockerImage = docker.build registry + dockerImage":$BUILD_NUMBER"
+dockerImage = docker.build registry + ":$BUILD_NUMBER"
 }
 }
 }
