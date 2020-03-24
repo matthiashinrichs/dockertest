@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    registry = "hub.hnrx.de/myapp"
+    registry = "myapp"
     dockerImage = ""
   }
 
@@ -27,7 +27,7 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-          docker.withRegistry( "" ) {
+          docker.withRegistry( "hub.hnrx.de:32769" ) {
             dockerImage.push()
           }
         }
