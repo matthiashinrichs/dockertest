@@ -15,10 +15,11 @@ metadata:
     app: myapp
   namespace: myapp
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: myapp
+  revisionHistoryLimit: 2
   template:
     metadata:
       labels:
