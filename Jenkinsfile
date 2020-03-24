@@ -34,6 +34,17 @@ pipeline {
       }
     }  
 
+    stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(
+            configs: "myapp.yaml",
+            enableConfigSubstitution: true,
+            kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
+
   }
 
 }
