@@ -27,7 +27,7 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-          docker.withRegistry( "hub.hnrx.de:32769" ) {
+          docker.withRegistry( "http://hub.hnrx.de:32769" ) {
             dockerImage.push()
           }
         }
