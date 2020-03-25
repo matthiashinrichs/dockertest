@@ -12,7 +12,7 @@ pipeline {
     stage('Checkout Source') {
       steps {
         git poll: true,
-            credentialsId: 'cbb84c4a-82cd-4b22-8cd7-a8a482711190',
+            credentialsId: 'bitbucket-matthias_hinrichs',
             url: 'https://bitbucket.org/hinrichsmedien/dockertest.git'
       }
     }
