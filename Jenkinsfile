@@ -45,6 +45,14 @@ pipeline {
         }
       }
     }
+    
+    stage('Send notification') {
+      steps {
+        script {
+          slackSend color: 'good', message: 'Message from Jenkins Pipeline'
+        }
+      }
+    }
 
   }
 
