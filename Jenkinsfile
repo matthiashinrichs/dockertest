@@ -9,6 +9,14 @@ pipeline {
 
   stages {
 
+    stage('Send start notification') {
+      steps {
+        script {
+          slackSend color: 'good', message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+        }
+      }
+    }
+    
     stage('Checkout Source') {
       steps {
         git poll: true,
@@ -49,7 +57,7 @@ pipeline {
     stage('Send notification') {
       steps {
         script {
-          slackSend color: 'good', message: 'A new version ($BUILD_NUMBER) of myapp has been deployed'
+          slackSend color: 'good', message: "A new version ${env.BUILD_NUMBER} of myapp has been deployed"
         }
       }
     }
