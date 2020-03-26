@@ -49,7 +49,7 @@ pipeline {
     stage('Send notification') {
       steps {
         script {
-          slackSend color: 'good', message: 'Message from Jenkins Pipeline'
+          slackSend color: 'good', message: 'A new version ($BUILD_NUMBER) of myapp has been deployed'
         }
       }
     }
