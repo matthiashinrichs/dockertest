@@ -1,4 +1,7 @@
 pipeline {
+  triggers {
+        pollSCM('* * * * *')
+    }
 
   environment {
     imageName = "matthias/myapp"
@@ -12,7 +15,7 @@ pipeline {
     stage('Send start notification') {
       steps {
         script {
-          slackSend color: 'good', message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+          slackSend color: '#00aaff', message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
         }
       }
     }
