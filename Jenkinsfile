@@ -6,14 +6,14 @@ pipeline {
     dockerImage = ""
   }
 
-  agent any
+  agent { label 'docker' }
 
   stages {
 
     stage('Send start notification') {
       steps {
         script {
-          slackSend color: '#00aaff', message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+          slackSend color: '#00aaff', message: "Build #${env.BUILD_NUMBER} started: ${env.JOB_NAME} on branch ${env.BRANCH_NAME}"
         }
       }
     }
