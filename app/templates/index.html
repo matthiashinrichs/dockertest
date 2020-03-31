@@ -13,7 +13,9 @@
 
 <body>
 <nav class="navbar fixed-top navbar-dark bg-dark">
-    <span class="navbar-brand mb-0 h1"><i class="fab fa-docker"></i>  Dummy App (Build number: {{ data.build_number }})</span>
+    <span class="navbar-brand mb-0 h1">
+        <i class="fab fa-docker"></i>  Dummy App <small class="text-muted">(Build #{{ data.build_number }})</small>
+    </span>
 </nav>
 
 <div class="container">
