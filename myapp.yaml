@@ -31,8 +31,6 @@ spec:
         ports:
         - containerPort: 5000
         env:
-        - name: DEMO_GREETING
-          value: "Hello from the environment"
         - name: BUILD_NUMBER
           value: $BUILD_NUMBER
 
