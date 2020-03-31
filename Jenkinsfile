@@ -57,7 +57,7 @@ pipeline {
     stage('Send success notification') {
       steps {
         script {
-          slackSend color: 'good', message: "A new version ${env.BUILD_NUMBER} of myapp has been deployed. Check it out on https://myapp.hnrx.de"
+          slackSend color: 'good', message: "A new version ${env.BUILD_NUMBER} of " + imageName + " has been deployed. Check it out on https://myapp.hnrx.de"
         }
       }
     }
