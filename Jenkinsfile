@@ -1,4 +1,5 @@
 pipeline {
+  triggers { pollSCM('* * * * *') }
 
   environment {
     imageName = "matthias/myapp"
@@ -38,6 +39,7 @@ pipeline {
         script {
           docker.withRegistry( "http://hub.hnrx.de:32769" ) {
             dockerImage.push()
+            dockerImage.push('latest')
           }
         }
       }
