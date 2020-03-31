@@ -57,10 +57,12 @@ pipeline {
     }
 
     stage('Remove local images') {
+      steps {
         // remove docker images
         sh("docker rmi -f hub.hnrx.de:32769/matthias/myapp:latest || :")
         sh("docker rmi -f hub.hnrx.de:32769/matthias/myapp:$BUILD_NUMBER || :")
-   }
+      }
+    }
     
     stage('Send success notification') {
       steps {
