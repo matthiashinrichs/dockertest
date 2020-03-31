@@ -1,7 +1,4 @@
 pipeline {
-  triggers {
-        pollSCM('*/2 * * * *')
-    }
 
   environment {
     imageName = "matthias/myapp"
