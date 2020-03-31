@@ -60,6 +60,7 @@ pipeline {
       steps {
         // remove docker images
         sh("docker rmi -f hub.hnrx.de:32769/matthias/myapp:latest || :")
+        sh("docker rmi -f hub.hnrx.de:32769/matthias/myapp:$BUILD_NUMBER || :")
         sh("docker rmi -f matthias/myapp:$BUILD_NUMBER || :")
       }
     }
