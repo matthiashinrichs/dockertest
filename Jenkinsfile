@@ -41,7 +41,7 @@ pipeline {
             dockerImage.push()
             dockerImage.push('latest')
           }
-          docker.withRegistry( "http://hub.k8s.hnrx.local" ) {
+          docker.withRegistry( "http://hub.k8s.hnrx.local", "k8s-registry-admin" ) {
             dockerImage.push()
             dockerImage.push('latest')
           }
