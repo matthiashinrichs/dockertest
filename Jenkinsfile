@@ -41,6 +41,10 @@ pipeline {
             dockerImage.push()
             dockerImage.push('latest')
           }
+          docker.withRegistry( "http://hub.k8s.hnrx.local" ) {
+            dockerImage.push()
+            dockerImage.push('latest')
+          }
         }
       }
     }  
