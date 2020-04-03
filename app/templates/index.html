@@ -14,13 +14,13 @@
 <body>
 <nav class="navbar fixed-top navbar-dark bg-dark">
     <span class="navbar-brand mb-0 h1">
-        <i class="fab fa-docker"></i>  Dummy App <small class="text-muted">(Build #{{ data.build_number }})</small>
+        <i class="fab fa-docker"></i>&nbsp;&nbsp;Demo Application <small class="text-muted">(Build #{{ data.build_number }})</small>
     </span>
 </nav>
 
 <div class="container">
     <div class="jumbotron">
-        <h1>Hello, Everyone!</h1>
+        <h1>Hello!</h1>
         <p>Hostname/Container-ID: {{ data.hostname }}</p>
         <p>Client-IP: {{ data.client_ip }}</p>
         {% if data.x_forwarded_ip != '0' %}
