@@ -33,6 +33,8 @@ spec:
         env:
         - name: BUILD_NUMBER
           value: $BUILD_NUMBER
+      imagePullSecrets:
+        - name: regcred
 
 ---
 kind: Service
