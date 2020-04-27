@@ -37,10 +37,6 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-          docker.withRegistry( "http://hub.hnrx.de:32769" ) {
-            dockerImage.push()
-            dockerImage.push('latest')
-          }
           docker.withRegistry( "http://hub.k8s.hnrx.local", "k8s-registry-admin" ) {
             dockerImage.push()
             dockerImage.push('latest')
@@ -63,8 +59,7 @@ pipeline {
     stage('Remove local images') {
       steps {
         // remove docker images
-        sh("docker rmi -f hub.hnrx.de:32769/matthias/myapp:latest || :")
-        sh("docker rmi -f hub.hnrx.de:32769/matthias/myapp:$BUILD_NUMBER || :")
+        sh("docker rmi -f matthias/myapp:latest || :")
         sh("docker rmi -f matthias/myapp:$BUILD_NUMBER || :")
       }
     }
