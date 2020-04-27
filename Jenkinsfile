@@ -68,14 +68,13 @@ pipeline {
         sh("docker rmi -f matthias/myapp:$BUILD_NUMBER || :")
       }
     }
-    
-    stage('Send success notification') {
-
-    }
 
   }
 
   post {
+         always {
+            cleanWs()
+         }
          success {
                   slackSend color: 'good', message: "A new version ${env.BUILD_NUMBER} of " + imageName + " has been deployed. Check it out on https://myapp.hnrx.de"
          }
