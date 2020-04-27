@@ -22,7 +22,7 @@ pipeline {
       steps {
         git poll: true,
             credentialsId: 'github-token',
-            url: 'https://github.com:matthiashinrichs/dockertest.git'
+            url: 'git@github.com:matthiashinrichs/dockertest.git'
       }
     }
 
