@@ -21,7 +21,7 @@ pipeline {
     stage('Checkout Source') {
       steps {
         git poll: true,
-            credentialsId: 'my_ght',
+            credentialsId: 'github_token',
             url: 'git@github.com:matthiashinrichs/dockertest.git'
       }
     }
