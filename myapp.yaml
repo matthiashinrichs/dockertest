@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: hub.hnrx.de:32769/matthias/myapp:$BUILD_NUMBER
+        image: hub.k8s.hnrx.local/matthias/myapp:$BUILD_NUMBER
         ports:
         - containerPort: 5000
         env:
