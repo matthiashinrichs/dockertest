@@ -10,7 +10,7 @@ pipeline {
 
   stages {
 
-    stage('Send start notification') {
+    stage('Notify Build start') {
       steps {
         script {
           slackSend color: '#00aaff', message: "Build #${env.BUILD_NUMBER} started: ${env.JOB_NAME} on branch ${env.BRANCH_NAME}"
