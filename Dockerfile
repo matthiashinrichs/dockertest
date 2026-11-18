@@ -1,12 +1,18 @@
-FROM python:3-alpine
+FROM --platform=$BUILDPLATFORM golang:1.27-alpine AS test
 
-WORKDIR /app
+WORKDIR /src
+COPY go.mod ./
+COPY cmd/ ./cmd/
+RUN CGO_ENABLED=0 go test ./...
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+FROM test AS build
+ARG TARGETOS
+ARG TARGETARCH
+RUN CGO_ENABLED=0 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -trimpath -o /dockertest ./cmd/dockertest
 
-COPY ./app /app
-
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+FROM scratch
+COPY --from=build /dockertest /dockertest
+USER 65532:65532
+EXPOSE 8080
+ENTRYPOINT ["/dockertest"]
 
